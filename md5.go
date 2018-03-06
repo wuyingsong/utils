@@ -13,6 +13,7 @@ func GetFileMD5(filename string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	defer file.Close()
 	hash := md5.New()
 	io.Copy(hash, file)
 	return fmt.Sprintf("%x", hash.Sum(nil)), nil
